@@ -25,6 +25,7 @@
    <field name='Text' required='N' />
    <field name='LastLiquidityInd' required='N' />
    <component name='MiscFeesGrp' required='N' />
+   <field name='TrdMatchID' required='N' />
   </message>
   <message name='OrderCancelReject' msgtype='9' msgcat='app'>
    <field name='OrderID' required='Y' />
@@ -43,6 +44,7 @@
    <field name='OrderQty' required='Y' />
    <field name='Price' required='N' />
    <field name='TimeInForce' required='N' />
+   <field name='SelfMatchPreventionInstruction' required='N' />
   </message>
   <message name='OrderCancelRequest' msgtype='F' msgcat='app'>
    <field name='OrigClOrdID' required='N' />
@@ -117,7 +119,6 @@
   <component name='Instrument'>
    <field name='Symbol' required='N' />
    <field name='SecurityType' required='N' />
-   <field name='MinPriceIncrement' required='N' />
   </component>
   <component name='AttrbGrp'>
    <group name='NoInstrAttrib' required='N'>
@@ -217,10 +218,15 @@
    <value enum='N' description='NO' />
    <value enum='Y' description='YES' />
   </field>
+  <field number='98' name='EncryptMethod' type='INT' /> 
   <field number='108' name='HeartBtInt' type='INT' />
   <field number='112' name='TestReqID' type='STRING' />
   <field number='122' name='OrigSendingTime' type='UTCTIMESTAMP' />
   <field number='123' name='GapFillFlag' type='BOOLEAN'>
+   <value enum='N' description='NO' />
+   <value enum='Y' description='YES' />
+  </field>
+  <field number='141' name='ResetSeqNumFlag' type='BOOLEAN'>
    <value enum='N' description='NO' />
    <value enum='Y' description='YES' />
   </field>
@@ -250,6 +256,7 @@
   </field>
   <field number='553' name='Username' type='STRING' />
   <field number='554' name='Password' type='STRING' />
+  <field number='1128' name='ApplVerID' type='STRING' />
   <field number='1137' name='DefaultApplVerID' type='STRING' />
   <field number='1409' name='SessionStatus' type='INT'>
    <value enum='0' description='SESSION_ACTIVE' />
@@ -269,6 +276,7 @@
   <field number='14' name='CumQty' type='QTY' />
   <field number='15' name='Currency' type='CURRENCY' />
   <field number='17' name='ExecID' type='STRING' />
+  <field number='18' name='ExecInst' type='MULTIPLECHARVALUE' />
   <field number='31' name='LastPx' type='PRICE' />
   <field number='32' name='LastQty' type='QTY' />
   <field number='35' name='MsgType' type='STRING'>
@@ -420,7 +428,6 @@
    <value enum='4' description='INSTRUMENT_DATA_TEMPORARILY_UNAVAILABLE' />
    <value enum='5' description='REQUEST_FOR_INSTRUMENT_DATA_NOT_SUPPORTED' />
   </field>
-  <field number='561' name='RoundLot' type='QTY' />
   <field number='851' name='LastLiquidityInd' type='INT'>
    <value enum='1' description='ADDED_LIQUIDITY' />
    <value enum='2' description='REMOVED_LIQUIDITY' />
@@ -431,11 +438,11 @@
    <value enum='41' description='AVERAGE_DAILY_NUMBER_TRADES' />
   </field>
   <field number='872' name='InstrAttribValue' type='STRING' />
+  <field number='880' name='TrdMatchID' type='STRING' />
   <field number='893' name='LastFragment' type='BOOLEAN'>
    <value enum='N' description='NO' />
    <value enum='Y' description='YES' />
   </field>
-  <field number='969' name='MinPriceIncrement' type='FLOAT' />
   <field number='980' name='SecurityUpdateAction' type='CHAR'>
    <value enum='A' description='ADD' />
    <value enum='D' description='DELETE' />
@@ -448,6 +455,8 @@
    <value enum='M' description='MODIFY' />
    <value enum='S' description='SNAPSHOT' />
   </field>
+  <field number='2362' name='SelfMatchPreventionID' type='STRING' />
   <field number='2446' name='AggressorSide' type='CHAR' />
+  <field number='2964' name='SelfMatchPreventionInstruction' type='INT' />
  </fields>
 </fix>

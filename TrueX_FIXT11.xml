@@ -10,6 +10,7 @@
   <field name='PossResend' required='N' />
   <field name='SendingTime' required='Y' />
   <field name='OrigSendingTime' required='N' />
+  <field name='ApplVerID' required='N' />
  </header>
  <messages>
   <message name='Heartbeat' msgtype='0' msgcat='admin'>
@@ -44,6 +45,7 @@
    <field name='DefaultApplVerID' required='Y' />
    <field name='SessionStatus' required='N' />
    <field name='Text' required='N' />
+   <field name='ResetSeqNumFlag' required='N' />
   </message>
  </messages>
  <trailer>
@@ -73,10 +75,15 @@
    <value enum='N' description='NO' />
    <value enum='Y' description='YES' />
   </field>
+  <field number='98' name='EncryptMethod' type='INT' /> 
   <field number='108' name='HeartBtInt' type='INT' />
   <field number='112' name='TestReqID' type='STRING' />
   <field number='122' name='OrigSendingTime' type='UTCTIMESTAMP' />
   <field number='123' name='GapFillFlag' type='BOOLEAN'>
+   <value enum='N' description='NO' />
+   <value enum='Y' description='YES' />
+  </field>
+  <field number='141' name='ResetSeqNumFlag' type='BOOLEAN'>
    <value enum='N' description='NO' />
    <value enum='Y' description='YES' />
   </field>
@@ -106,6 +113,7 @@
   </field>
   <field number='553' name='Username' type='STRING' />
   <field number='554' name='Password' type='STRING' />
+  <field number='1128' name='ApplVerID' type='STRING' />
   <field number='1137' name='DefaultApplVerID' type='STRING' />
   <field number='1409' name='SessionStatus' type='INT'>
    <value enum='0' description='SESSION_ACTIVE' />
