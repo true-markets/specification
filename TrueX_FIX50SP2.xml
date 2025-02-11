@@ -26,6 +26,7 @@
    <field name='LastLiquidityInd' required='N' />
    <component name='MiscFeesGrp' required='N' />
    <field name='TrdMatchID' required='N' />
+   <field name='SelfMatchPreventionInstruction' required='N' />
   </message>
   <message name='OrderCancelReject' msgtype='9' msgcat='app'>
    <field name='OrderID' required='Y' />
