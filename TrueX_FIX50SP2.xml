@@ -26,6 +26,7 @@
    <field name='LastLiquidityInd' required='N' />
    <component name='MiscFeesGrp' required='N' />
    <field name='TrdMatchID' required='N' />
+   <field name='SelfMatchPreventionInstruction' required='N' />
   </message>
   <message name='OrderCancelReject' msgtype='9' msgcat='app'>
    <field name='OrderID' required='Y' />
@@ -149,17 +150,10 @@
     <field name='PartyRole' required='N' />
    </group>
   </component>
-  <component name='BaseTradingRules'>
-   <field name='RoundLot' required='N' />
-  </component>
-  <component name='SecurityTradingRules'>
-   <component name='BaseTradingRules' required='N' />
-  </component>
   <component name='SecListGrp'>
    <group name='NoRelatedSym' required='N'>
     <component name='Instrument' required='N' />
     <component name='InstrumentExtension' required='N' />
-    <component name='SecurityTradingRules' required='N' />
     <field name='Currency' required='N' />
    </group>
   </component>
@@ -168,7 +162,6 @@
     <field name='ListUpdateAction' required='N' />
     <component name='Instrument' required='N' />
     <component name='InstrumentExtension' required='N' />
-    <component name='SecurityTradingRules' required='N' />
     <field name='Currency' required='N' />
    </group>
   </component>
