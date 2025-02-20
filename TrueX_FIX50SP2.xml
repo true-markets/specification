@@ -34,6 +34,7 @@
    <field name='OrigClOrdID' required='N' />
    <field name='CxlRejResponseTo' required='Y' />
    <field name='CxlRejReason' required='N' />
+   <field name='OrdStatus' required='Y' />
    <field name='Text' required='N' />
   </message>
   <message name='NewOrderSingle' msgtype='D' msgcat='app'>
