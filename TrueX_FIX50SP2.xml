@@ -27,6 +27,7 @@
    <component name='MiscFeesGrp' required='N' />
    <field name='TrdMatchID' required='N' />
    <field name='SelfMatchPreventionInstruction' required='N' />
+   <field name='ExecInst' required='N' />
   </message>
   <message name='OrderCancelReject' msgtype='9' msgcat='app'>
    <field name='OrderID' required='Y' />
