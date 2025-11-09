@@ -46,6 +46,7 @@
    <field name='OrderQty' required='Y' />
    <field name='Price' required='N' />
    <field name='TimeInForce' required='N' />
+   <field name='ExecInst' required='N' />
    <field name='SelfMatchPreventionInstruction' required='N' />
   </message>
   <message name='OrderCancelRequest' msgtype='F' msgcat='app'>
@@ -108,6 +109,23 @@
    <field name='SecurityUpdateAction' required='N' />
    <field name='LastFragment' required='N' />
    <component name='SecLstUpdRelSymGrp' required='N' />
+  </message>
+  <message name='TradeCaptureReportRequest' msgtype='AD' msgcat='app'>
+   <field name='TradeRequestID' required='Y' />
+   <field name='TradeRequestType' required='Y' />
+   <field name='SubscriptionRequestType' required='N' />
+   <component name='Parties' required='N' />
+   <component name='Instrument' required='N' />
+   <field name='Side' required='N' />
+  </message>
+  <message name='TradeCaptureReportRequestAck' msgtype='AQ' msgcat='app'>
+   <field name='TradeRequestID' required='Y' />
+   <field name='TradeRequestType' required='Y' />
+   <field name='SubscriptionRequestType' required='N' />
+   <field name='TotNumTradeReports' required='N' />
+   <field name='TradeRequestResult' required='Y' />
+   <field name='TradeRequestStatus' required='Y' />
+   <field name='Text' required='N' />
   </message>
  </messages>
  <trailer />
@@ -293,6 +311,8 @@
    <value enum='j' description='BUSINESS_MESSAGE_REJECT' />
    <value enum='x' description='SECURITY_LIST_REQUEST' />
    <value enum='y' description='SECURITY_LIST' />
+   <value enum='AD' description='TRADE_CAPTURE_REPORT_REQUEST' />
+   <value enum='AQ' description='TRADE_CAPTURE_REPORT_REQUEST_ACK' />
    <value enum='BK' description='SECURITY_LIST_UPDATE_REPORT' />
   </field>
   <field number='37' name='OrderID' type='STRING' />
@@ -420,9 +440,35 @@
    <value enum='2' description='NO_INSTRUMENTS_FOUND' />
    <value enum='3' description='NOT_AUTHORIZED_TO_RETRIEVE_INSTRUMENT_DATA' />
    <value enum='4' description='INSTRUMENT_DATA_TEMPORARILY_UNAVAILABLE' />
-   <value enum='5' description='REQUEST_FOR_INSTRUMENT_DATA_NOT_SUPPORTED' />
-  </field>
-  <field number='851' name='LastLiquidityInd' type='INT'>
+  <value enum='5' description='REQUEST_FOR_INSTRUMENT_DATA_NOT_SUPPORTED' />
+ </field>
+ <field number='568' name='TradeRequestID' type='STRING' />
+ <field number='569' name='TradeRequestType' type='INT'>
+  <value enum='0' description='ALL_TRADES' />
+  <value enum='1' description='MATCHED_TRADES_MATCHING_CRITERIA_PROVIDED_ON_REQUEST' />
+  <value enum='2' description='UNMATCHED_TRADES_THAT_MATCH_CRITERIA' />
+  <value enum='3' description='UNREPORTED_TRADES_THAT_MATCH_CRITERIA' />
+  <value enum='4' description='ADVISORIES_THAT_MATCH_CRITERIA' />
+ </field>
+ <field number='748' name='TotNumTradeReports' type='INT' />
+ <field number='749' name='TradeRequestResult' type='INT'>
+  <value enum='0' description='SUCCESSFUL' />
+  <value enum='1' description='INVALID_OR_UNKNOWN_INSTRUMENT' />
+  <value enum='2' description='INVALID_TYPE_OF_TRADE_REQUESTED' />
+  <value enum='3' description='INVALID_PARTIES' />
+  <value enum='4' description='INVALID_TRANSPORT_TYPE_REQUESTED' />
+  <value enum='5' description='INVALID_DESTINATION_REQUESTED' />
+  <value enum='8' description='TRADEREQUESTTYPE_NOT_SUPPORTED' />
+  <value enum='9' description='UNAUTHORIZED_FOR_TRADE_CAPTURE_REPORT_REQUEST' />
+  <value enum='99' description='OTHER' />
+ </field>
+ <field number='750' name='TradeRequestStatus' type='INT'>
+  <value enum='0' description='ACCEPTED' />
+  <value enum='1' description='COMPLETED' />
+  <value enum='2' description='REJECTED' />
+ </field>
+ <field number='851' name='LastLiquidityInd' type='INT'>
+   <value enum='0' description='UNKNOWN_LIQUIDITY' />
    <value enum='1' description='ADDED_LIQUIDITY' />
    <value enum='2' description='REMOVED_LIQUIDITY' />
   </field>
