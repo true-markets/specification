@@ -28,6 +28,9 @@
    <field name='TrdMatchID' required='N' />
    <field name='SelfMatchPreventionInstruction' required='N' />
    <field name='ExecInst' required='N' />
+   <field name='MassStatusReqID' required='N' />
+   <field name='TotNumReports' required='N' />
+   <field name='LastRptRequested' required='N' />
   </message>
   <message name='OrderCancelReject' msgtype='9' msgcat='app'>
    <field name='OrderID' required='Y' />
@@ -127,6 +130,13 @@
    <field name='TradeRequestResult' required='Y' />
    <field name='TradeRequestStatus' required='Y' />
    <field name='Text' required='N' />
+  </message>
+  <message name='OrderMassStatusRequest' msgtype='AF' msgcat='app'>
+   <field name='MassStatusReqID' required='Y' />
+   <field name='MassStatusReqType' required='Y' />
+   <component name='Parties' required='Y' />
+   <component name='Instrument' required='N' />
+   <field name='Side' required='N' />
   </message>
  </messages>
  <trailer />
@@ -313,6 +323,7 @@
    <value enum='x' description='SECURITY_LIST_REQUEST' />
    <value enum='y' description='SECURITY_LIST' />
    <value enum='AD' description='TRADE_CAPTURE_REPORT_REQUEST' />
+   <value enum='AF' description='ORDER_MASS_STATUS_REQUEST' />
    <value enum='AQ' description='TRADE_CAPTURE_REPORT_REQUEST_ACK' />
    <value enum='BK' description='SECURITY_LIST_UPDATE_REPORT' />
   </field>
@@ -378,6 +389,7 @@
    <value enum='C' description='EXPIRED' />
    <value enum='E' description='PENDING_REPLACE' />
    <value enum='F' description='TRADE' />
+   <value enum='I' description='ORDER_STATUS' />
   </field>
   <field number='151' name='LeavesQty' type='QTY' />
   <field number='167' name='SecurityType' type='STRING'>
@@ -468,6 +480,10 @@
   <value enum='1' description='COMPLETED' />
   <value enum='2' description='REJECTED' />
  </field>
+ <field number='584' name='MassStatusReqID' type='STRING' />
+ <field number='585' name='MassStatusReqType' type='INT'>
+  <value enum='7' description='STATUS_FOR_ALL_ORDERS' />
+ </field>
  <field number='851' name='LastLiquidityInd' type='INT'>
    <value enum='0' description='UNKNOWN_LIQUIDITY' />
    <value enum='1' description='ADDED_LIQUIDITY' />
@@ -481,6 +497,11 @@
   <field number='872' name='InstrAttribValue' type='STRING' />
   <field number='880' name='TrdMatchID' type='STRING' />
   <field number='893' name='LastFragment' type='BOOLEAN'>
+   <value enum='N' description='NO' />
+   <value enum='Y' description='YES' />
+  </field>
+  <field number='911' name='TotNumReports' type='INT' />
+  <field number='912' name='LastRptRequested' type='BOOLEAN'>
    <value enum='N' description='NO' />
    <value enum='Y' description='YES' />
   </field>
