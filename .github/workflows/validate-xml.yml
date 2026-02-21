@@ -1,0 +1,33 @@
+name: Validate XML
+
+on:
+  pull_request:
+  push:
+    branches: [develop]
+
+jobs:
+  validate-xml:
+    runs-on: small
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate XML syntax
+        run: |
+          python3 -c "
+          import xml.etree.ElementTree as ET
+          import glob, sys
+
+          failed = False
+          for path in glob.glob('**/*.xml', recursive=True):
+              print(f'Validating {path}...', end=' ')
+              try:
+                  ET.parse(path)
+                  print('OK')
+              except ET.ParseError as e:
+                  print(f'FAILED: {e}')
+                  failed = True
+
+          if failed:
+              sys.exit(1)
+          print('All XML files are valid.')
+          "
