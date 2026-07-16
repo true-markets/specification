@@ -44,6 +44,7 @@
   <message name='NewOrderSingle' msgtype='D' msgcat='app'>
    <field name='ClOrdID' required='Y' />
    <component name='Parties' required='N' />
+   <field name='HandlInst' required='N' />
    <component name='Instrument' required='Y' />
    <field name='Side' required='Y' />
    <field name='OrdType' required='Y' />
@@ -241,7 +242,15 @@
    <value enum='N' description='NO' />
    <value enum='Y' description='YES' />
   </field>
-  <field number='98' name='EncryptMethod' type='INT' /> 
+  <field number='98' name='EncryptMethod' type='INT'>
+   <value enum='0' description='NONE_OTHER' />
+   <value enum='1' description='PKCS' />
+   <value enum='2' description='DES' />
+   <value enum='3' description='PKCSDES' />
+   <value enum='4' description='PGPDES' />
+   <value enum='5' description='PGPDESMD5' />
+   <value enum='6' description='PEMDESMD5' />
+  </field>
   <field number='108' name='HeartBtInt' type='INT' />
   <field number='112' name='TestReqID' type='STRING' />
   <field number='122' name='OrigSendingTime' type='UTCTIMESTAMP' />
@@ -300,6 +309,11 @@
   <field number='15' name='Currency' type='CURRENCY' />
   <field number='17' name='ExecID' type='STRING' />
   <field number='18' name='ExecInst' type='MULTIPLECHARVALUE' />
+  <field number='21' name='HandlInst' type='CHAR'>
+   <value enum='1' description='AUTOMATED_EXECUTION_NO_INTERVENTION' />
+   <value enum='2' description='AUTOMATED_EXECUTION_INTERVENTION_OK' />
+   <value enum='3' description='MANUAL_ORDER' />
+  </field>
   <field number='31' name='LastPx' type='PRICE' />
   <field number='32' name='LastQty' type='QTY' />
   <field number='35' name='MsgType' type='STRING'>
@@ -406,6 +420,7 @@
    <value enum='0' description='BID' />
    <value enum='1' description='OFFER' />
    <value enum='2' description='TRADE' />
+   <value enum='4' description='OPENING_PRICE' />
   </field>
   <field number='270' name='MDEntryPx' type='PRICE' />
   <field number='271' name='MDEntrySize' type='QTY' />
@@ -488,6 +503,7 @@
    <value enum='0' description='UNKNOWN_LIQUIDITY' />
    <value enum='1' description='ADDED_LIQUIDITY' />
    <value enum='2' description='REMOVED_LIQUIDITY' />
+   <value enum='4' description='AUCTION' />
   </field>
   <field number='870' name='NoInstrAttrib' type='NUMINGROUP' />
   <field number='871' name='InstrAttribType' type='INT'>
@@ -519,6 +535,9 @@
   </field>
   <field number='2362' name='SelfMatchPreventionID' type='STRING' />
   <field number='2446' name='AggressorSide' type='CHAR' />
-  <field number='2964' name='SelfMatchPreventionInstruction' type='INT' />
+  <field number='2964' name='SelfMatchPreventionInstruction' type='INT'>
+   <value enum='1' description='CANCEL_AGGRESSIVE' />
+   <value enum='3' description='CANCEL_AGGRESSIVE_AND_PASSIVE' />
+  </field>
  </fields>
 </fix>
